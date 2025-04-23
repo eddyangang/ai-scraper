@@ -16,6 +16,7 @@ function page() {
                         Manage your workflows
                     </p>
                 </div>
+                <CreateWorkflowDialog />
             </div>
 
             <div className='h-full py-6'>

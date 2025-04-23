@@ -53,10 +53,10 @@ function DeleteWorkflowDialog({
                     <AlertDialogDescription>
                         These workflow will not be recoverable.
                         <div className='flex flex-col py-4 gap-2'>
-                            <p>
+                            <span>
                                 If you are sure, enter <b>{workflowName}</b> to
                                 confirm:
-                            </p>
+                            </span>
                             <Input
                                 value={confirmText}
                                 onChange={(e) => setConfirmText(e.target.value)}
