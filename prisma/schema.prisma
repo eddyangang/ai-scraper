@@ -3,7 +3,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../lib/generated/prisma"
 }
 
 datasource db {
@@ -57,7 +56,7 @@ model ExecutionPhase {
   inputs String?
   outputs String?
 
-  creditsCost Int
+  creditsCost Int?
 
   workflowExecutionId String
   execution WorkflowExecution @relation(fields: [workflowExecutionId], references: [id], onDelete: Cascade)
