@@ -29,6 +29,7 @@ const useExecutionPlan = () => {
         },
         [setInvalidInputs]
     );
+
     const generateExecutionPlan = useCallback(() => {
         const { nodes, edges } = toObject();
         const { executionPlan, error } = FlowToExecutionPlan(

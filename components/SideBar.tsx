@@ -37,11 +37,11 @@ const routes = [
 ];
 function DesktopSideBar() {
     const pathname = usePathname();
-    const activeRoute = routes.find(
-        (route) =>
-            (route.href.length > 0 && pathname.includes(route.href)) ||
-            routes[0]
-    );
+    const activeRoute =
+        routes.find(
+            (route) => route.href.length > 0 && pathname.includes(route.href)
+        ) || routes[0];
+
     return (
         <div className='hidden relative md:block min-w-[280px] max-w-[280px] h-screen overflow-hidden w-full bg-primary/5 dark:bg-secondary/30 dark:text-foreground text-muted-foreground border-r-2 border-separate'>
             <div className='flex items-center justify-center gap-2 border-b-[1px] border-separate p-4'>
@@ -52,7 +52,7 @@ function DesktopSideBar() {
                 {routes.map((route) => (
                     <Link
                         key={route.href}
-                        href={route.href}
+                        href={route.href || '/'}
                         className={buttonVariants({
                             variant:
                                 activeRoute?.href === route.href
@@ -72,11 +72,10 @@ function DesktopSideBar() {
 export function MobileSideBar() {
     const [isOpen, setOpen] = useState(false);
     const pathname = usePathname();
-    const activeRoute = routes.find(
-        (route) =>
-            (route.href.length > 0 && pathname.includes(route.href)) ||
-            routes[0]
-    );
+    const activeRoute =
+        routes.find(
+            (route) => route.href.length > 0 && pathname.includes(route.href)
+        ) || routes[0];
     return (
         <div className='block border-separate bg-separate bg-background md:hidden'>
             <nav className='container flex items-center justify-between px-8'>
@@ -95,7 +94,7 @@ export function MobileSideBar() {
                             {routes.map((route) => (
                                 <Link
                                     key={route.href}
-                                    href={route.href}
+                                    href={route.href || '/'}
                                     className={buttonVariants({
                                         variant:
                                             activeRoute?.href === route.href
