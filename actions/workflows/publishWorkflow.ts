@@ -5,6 +5,7 @@ import { FlowToExecutionPlan } from '@/lib/workflow/executionPlan';
 import { CalculateWorkflowCosst } from '@/lib/workflow/helpers';
 import { WorkflowStatus } from '@/types/workflow';
 import { auth } from '@clerk/nextjs/server';
+import { revalidatePath } from 'next/cache';
 
 export async function PublishWorkflow({
     id,
@@ -49,7 +50,6 @@ export async function PublishWorkflow({
     await prisma.workflow.update({
         where: {
             id,
-
             userId,
         },
         data: {
@@ -59,4 +59,6 @@ export async function PublishWorkflow({
             status: WorkflowStatus.PUBLISHED,
         },
     });
+
+    revalidatePath(`/workflow/editor/${id}`);
 }
