@@ -87,8 +87,11 @@ function CreateCredentialDialog({ triggerText }: { triggerText?: string }) {
                                             <Input {...field} />
                                         </FormControl>
                                         <FormDescription>
-                                            Choose a description and unique
-                                            name.
+                                            Enter a unique and descriptive name
+                                            for the credential.
+                                            <br />
+                                            This name will be used to identify
+                                            the credential.
                                         </FormDescription>
                                         <FormMessage />
                                     </FormItem>
@@ -97,21 +100,22 @@ function CreateCredentialDialog({ triggerText }: { triggerText?: string }) {
 
                             <FormField
                                 control={form.control}
-                                name='description'
+                                name='value'
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel className='flex gap-1 items-center'>
-                                            Description
+                                            Value
                                             <p className='text-xs text-primary'>
-                                                (optional)
+                                                (required)
                                             </p>
                                         </FormLabel>
                                         <FormControl>
                                             <Textarea {...field} />
                                         </FormControl>
                                         <FormDescription>
-                                            Provide a brief description of what
-                                            your workflow does.
+                                            Enter the value associated with this
+                                            credential <br /> This value will be
+                                            securly encryted and stored.
                                         </FormDescription>
                                         <FormMessage />
                                     </FormItem>
