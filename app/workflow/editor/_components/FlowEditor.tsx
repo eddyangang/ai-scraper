@@ -51,7 +51,7 @@ function FlowEditor({ workflow }: { workflow: Workflow }) {
             const { x = 0, y = 0, zoom = 1 } = flow.viewport;
             setViewport({ x, y, zoom });
         } catch (error) {}
-    }, [setEdges, setNodes, workflow.definition]);
+    }, [setEdges, setNodes, workflow.definition, setViewport]);
 
     const onDragOver = useCallback((e: React.DragEvent) => {
         e.preventDefault();
@@ -114,6 +114,9 @@ function FlowEditor({ workflow }: { workflow: Workflow }) {
             );
 
             if (input?.type !== output?.type) {
+                console.log('@@targetTask', targetTask);
+
+                console.log('@@input: ', input);
                 console.error('invalid connection: type mismatch');
                 return false;
             }
