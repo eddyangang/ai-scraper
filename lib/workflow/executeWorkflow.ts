@@ -282,9 +282,9 @@ function createExecutionEnvironment(
 
 async function cleanupEnvironment(environment: Environment) {
     if (environment.browser) {
-        await environment.browser
-            .close()
-            .catch((err) => console.error('Cannot close browser'));
+        // await environment.browser
+        //     .close()
+        //     .catch((err) => console.error('Cannot close browser'));
     }
 }
 
