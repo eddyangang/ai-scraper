@@ -21,6 +21,7 @@ function TaskMenu() {
                     'interactions',
                     'timing',
                     'results',
+                    'storage',
                 ]}
             >
                 <AccordionItem value='interactions'>
@@ -28,8 +29,10 @@ function TaskMenu() {
                         User Interactions
                     </AccordionTrigger>
                     <AccordionContent className='flex flex-col gap-1'>
+                        <TaskMenuBtn taskType={TaskType.NAVIGATE_URL} />
                         <TaskMenuBtn taskType={TaskType.FILL_INPUT} />
                         <TaskMenuBtn taskType={TaskType.CLICK_ELEMENT} />
+                        <TaskMenuBtn taskType={TaskType.SCROLL_TO_ELEMENT} />
                     </AccordionContent>
                 </AccordionItem>
 
@@ -43,6 +46,18 @@ function TaskMenu() {
                             taskType={TaskType.EXTRACT_TEXT_FROM_ELEMENT}
                         />
                         <TaskMenuBtn taskType={TaskType.EXTRACT_DATA_WITH_AI} />
+                    </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value='storage'>
+                    <AccordionTrigger className='font-bold'>
+                        Data Storage
+                    </AccordionTrigger>
+                    <AccordionContent className='flex flex-col gap-1'>
+                        <TaskMenuBtn
+                            taskType={TaskType.READ_PROPERTY_FROM_JSON}
+                        />
+                        <TaskMenuBtn taskType={TaskType.ADD_PROPERTY_TO_JSON} />
                     </AccordionContent>
                 </AccordionItem>
 

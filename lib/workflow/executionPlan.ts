@@ -121,6 +121,7 @@ function getInvalidInputs(nodes: AppNode, edges: Edge[], planned: Set<string>) {
         const inputLinkedToOutput = incomingEdges.find(
             (edge) => edge.targetHandle === input.name
         );
+
         const requiredInputProvidedByVisitedOutput =
             input.required &&
             inputLinkedToOutput &&
