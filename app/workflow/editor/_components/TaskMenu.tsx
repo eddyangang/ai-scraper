@@ -10,6 +10,8 @@ import {
 import { TaskType } from '@/types/task';
 import { TaskRegistry } from '@/lib/workflow/task/registry';
 import { Button } from '@/components/ui/button';
+import { CoinsIcon } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 function TaskMenu() {
     return (
         <aside className='w-[340px] min-w-[340px] max-w-[340px] border-r-2 border-separate h-full p-2 px-4 overflow-auto'>
@@ -85,10 +87,12 @@ function TaskMenu() {
 
 function TaskMenuBtn({ taskType }: { taskType: TaskType }) {
     const task = TaskRegistry[taskType];
+
     const ondragstart = (e: React.DragEvent, type: TaskType) => {
         e.dataTransfer.setData('application/reactflow', type);
         e.dataTransfer.effectAllowed = 'move';
     };
+
     return (
         <Button
             variant={'secondary'}
@@ -96,8 +100,13 @@ function TaskMenuBtn({ taskType }: { taskType: TaskType }) {
             draggable
             onDragStart={(e) => ondragstart(e, taskType)}
         >
-            <task.icon size={20} />
-            {task.label}
+            <div>
+                <task.icon size={20} />
+                {task.label}
+            </div>
+            <Badge className='gap-2 flex items-center' variant={'outline'}>
+                <CoinsIcon size={16} />
+            </Badge>
         </Button>
     );
 }
