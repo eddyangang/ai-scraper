@@ -110,7 +110,7 @@ function FlowEditor({ workflow }: { workflow: Workflow }) {
                 (o) => o.name === connection.sourceHandle
             );
             const input = targetTask.inputs.find(
-                (o) => o.name === connection.sourceHandle
+                (o) => o.name === connection.targetHandle
             );
 
             if (input?.type !== output?.type) {
