@@ -48,10 +48,15 @@ function CreateCredentialDialog({ triggerText }: { triggerText?: string }) {
         },
     });
 
-    const onSubmit = useCallback((values: createCredentialSchemaType) => {
-        toast.loading('Creating credential...', { id: 'create-credential' });
-        mutate(values);
-    }, []);
+    const onSubmit = useCallback(
+        (values: createCredentialSchemaType) => {
+            toast.loading('Creating credential...', {
+                id: 'create-credential',
+            });
+            mutate(values);
+        },
+        [mutate]
+    );
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
