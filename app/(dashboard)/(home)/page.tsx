@@ -6,6 +6,10 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { GetStatsCardsValues } from '@/actions/analytics/getStatsCardsValues';
 import { CirclePlayIcon, CoinsIcon, WaypointsIcon } from 'lucide-react';
 import StatsCard from './_components/StatsCard';
+import { GetWorkflowExecutionStats } from '@/actions/analytics/getWorkflowExecutionStats';
+import ExecutionStatusChart from './_components/ExecutionStatusChart';
+import { GetCreditUsageInPeriod } from '@/actions/analytics/getCreditUsageInPeriod';
+import CreditUsageChart from './billing/_components/CreditUsageChart';
 
 function HomePage({
     searchParams,
@@ -33,8 +37,12 @@ function HomePage({
                     <StatsCards selectedPeriod={period} />
                 </Suspense>
 
-                <Suspense fallback={<Skeleton className='w-full h-[300px]' />}>
-                    <StatsCards selectedPeriod={period} />
+                <Suspense fallback={<Skeleton className='w-full h-[300px] ' />}>
+                    <StatsExecutionStatus selectedPeriod={period} />
+                </Suspense>
+
+                <Suspense fallback={<Skeleton className='w-full h-[300px] ' />}>
+                    <CreditsUsageInPeriods selectedPeriod={period} />
                 </Suspense>
             </div>
         </div>
@@ -80,6 +88,30 @@ function StatsCardsSkeleton() {
                 <Skeleton key={i} className='w-full min-h-[120px]:' />
             ))}
         </div>
+    );
+}
+
+async function StatsExecutionStatus({
+    selectedPeriod,
+}: {
+    selectedPeriod: Period;
+}) {
+    const data = await GetWorkflowExecutionStats(selectedPeriod);
+    return <ExecutionStatusChart data={data} />;
+}
+
+async function CreditsUsageInPeriods({
+    selectedPeriod,
+}: {
+    selectedPeriod: Period;
+}) {
+    const data = await GetCreditUsageInPeriod(selectedPeriod);
+    return (
+        <CreditUsageChart
+            data={data}
+            title='Daily credit spent'
+            description='Daily credit consumed in selected period'
+        />
     );
 }
 
